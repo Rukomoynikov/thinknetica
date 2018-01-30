@@ -11,7 +11,36 @@ require_relative('./management')
 # management = Management.new
 # management.run
 
-Station.new('Москва-3')
-Station.new('Мытищи')
-t = PassengerTrain.new('asfasf')
-t.wagons_add(PassengerWagon.new())
+# Создание станций
+st1 = Station.new('Москва-3')
+st2 = Station.new('Мытищи')
+
+# Создание маршрута
+route = Route.new('Siberia', st1, st2)
+
+# Создание поездов
+passenger_train = PassengerTrain.new('aaa-aa')
+cargo_train = CargoTrain.new('bbb-aa')
+
+passenger_train.route = route
+cargo_train.route = route
+
+# Создание вагонов
+passenger_wagon = PassengerWagon. new(43)
+passenger_wagon.reserve_place
+passenger_wagon.reserve_all_place
+
+cargo_wagon = CargoWagon.new(43)
+cargo_wagon.reserve_space(44)
+
+passenger_train.wagons_add(passenger_wagon)
+cargo_train.wagons_add(cargo_wagon)
+
+# Используя созданные в рамках задания методы, написать код, 
+# который перебирает последовательно все станции и для каждой 
+# станции выводит список поездов в формате:
+# - Номер поезда, тип, кол-во вагонов
+
+Station.each do |station|
+  station.print_info
+end

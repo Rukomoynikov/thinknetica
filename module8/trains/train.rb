@@ -31,10 +31,10 @@ class Train
     def find(number)
       @@instances[number]
     end
+  end
 
-    def each_wagon (train)
-      train.wagons.each { |wagon| yield wagon }
-    end
+  def each_wagon
+    wagons.each { |wagon| yield wagon }
   end
 
   def speed_raise(num)
