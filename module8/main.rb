@@ -31,7 +31,7 @@ passenger_wagon.reserve_place
 passenger_wagon.reserve_all_place
 
 cargo_wagon = CargoWagon.new(43)
-cargo_wagon.reserve_space(44)
+cargo_wagon.reserve_space(13)
 
 passenger_train.wagons_add(passenger_wagon)
 cargo_train.wagons_add(cargo_wagon)
@@ -43,4 +43,5 @@ cargo_train.wagons_add(cargo_wagon)
 
 Station.each do |station|
   station.print_info
+  p '    '
 end

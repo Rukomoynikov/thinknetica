@@ -18,6 +18,12 @@ class PassengerWagon < Wagon
     seats_count - reserved_places_count
   end
 
+  def print_info(index)
+    "№#{index} Пассажирский вагон, 
+    свободно #{available_places_count} мест, 
+    занято #{reserved_places_count} мест."
+  end
+
   private
 
   attr_writer :seats_count, :reserved_places_count

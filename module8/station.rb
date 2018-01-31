@@ -33,7 +33,11 @@ class Station
   def print_info
     p "На станции: #{ self.name }"
     p "Стоит #{ @trains.count } поездов"
-    @trains.each { |train, index| p "#{index} №#{train.number} - #{ train.type }"}
+    @trains.each do |train, index| 
+      p "#{index} №#{train.number} - #{ train.type }"
+      p "Вагоны:"
+      train.wagons.each { |wagon, index| p wagon.print_info(index) }
+    end
   end
 
   def send_train(train)

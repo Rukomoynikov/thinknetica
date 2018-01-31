@@ -22,6 +22,8 @@ class Management
     when 7 then move_train
     when 8 then 
       stations
+    when 9
+      wagons_management
     end
   end
 
@@ -43,6 +45,24 @@ class Management
     end
 
     run
+  end
+
+  def wagons_management
+    p '1. Добавить вагон'
+    p '2. Список вагонов'
+    choice = gets.chomp.to_i
+
+    p 'Тип вагона?'
+    p '1. Пассажирский'
+    p '1. Грузовой'
+    choice = gets.chomp.to_i
+
+    if choice == 1
+      wagon = PassengerWagon.new()
+    else
+      wagon = CargoWagon.new()
+    end
+
   end
 
   def select_train

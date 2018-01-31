@@ -6,9 +6,9 @@ class CargoWagon < Wagon
   end
 
   def reserve_space(space)
-    reserved_cargo_space ||= 0
+    self.reserved_cargo_space ||= 0
 
-    if reserved_cargo_space + space <= cargo_space
+    if self.reserved_cargo_space + space <= cargo_space
       self.reserved_cargo_space = space 
     end
   end
@@ -19,6 +19,12 @@ class CargoWagon < Wagon
 
   def available_space
     cargo_space - reserved_cargo_space
+  end
+
+  def print_info(index)
+    "№#{ index } Грузовой вагон, 
+    свободно #{ available_space } для загрузки, 
+    занято #{ reserved_cargo_space }."
   end
   
   private
