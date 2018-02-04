@@ -44,6 +44,12 @@ class Station
     @trains.delete(train)
   end
 
+  def each_train
+    @trains.each do |train|
+      yield train
+    end
+  end
+
   def trains(type = nil)
     if !type.nil?
       @trains.select { |train| train.type == type }
