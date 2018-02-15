@@ -9,14 +9,14 @@ class Station
   attr_reader :name
 
   def self.all
-    @@instances    
+    @@instances
   end
 
   def self.each
     @@instances.each do |instance|
       yield instance
     end
-  end  
+  end
 
   def initialize(name)
     @name = name
@@ -31,11 +31,11 @@ class Station
   end
 
   def print_info
-    p "На станции: #{ self.name }"
-    p "Стоит #{ @trains.count } поездов"
-    @trains.each do |train, index| 
-      p "#{index} №#{train.number} - #{ train.type }"
-      p "Вагоны:"
+    p "На станции: #{name}"
+    p "Стоит #{@trains.count} поездов"
+    @trains.each do |train, index|
+      p "#{index} №#{train.number} - #{train.type}"
+      p 'Вагоны:'
       train.wagons.each { |wagon, index| p wagon.print_info(index) }
     end
   end
@@ -58,9 +58,9 @@ class Station
     end
   end
 
-  private 
+  private
 
   def validate!
-    raise 'Пустое название' if self.name.nil? or self.name.length.zero?
+    raise 'Пустое название' if name.nil? || name.length.zero?
   end
 end

@@ -19,8 +19,8 @@ class PassengerWagon < Wagon
   end
 
   def print_info(index)
-    "№#{index} Пассажирский вагон, 
-    свободно #{available_places_count} мест, 
+    "№#{index} Пассажирский вагон,
+    свободно #{available_places_count} мест,
     занято #{reserved_places_count} мест."
   end
 

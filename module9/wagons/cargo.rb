@@ -9,7 +9,7 @@ class CargoWagon < Wagon
     self.reserved_cargo_space ||= 0
 
     if self.reserved_cargo_space + space <= cargo_space
-      self.reserved_cargo_space = space 
+      self.reserved_cargo_space = space
     end
   end
 
@@ -22,11 +22,11 @@ class CargoWagon < Wagon
   end
 
   def print_info(index)
-    "№#{ index } Грузовой вагон, 
-    свободно #{ available_space } для загрузки, 
-    занято #{ reserved_cargo_space }."
+    "№#{index} Грузовой вагон,
+    свободно #{available_space} для загрузки,
+    занято #{reserved_cargo_space}."
   end
-  
+
   private
 
   attr_writer :cargo_space, :reserved_cargo_space

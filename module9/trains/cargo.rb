@@ -3,7 +3,7 @@ class CargoTrain < Train
     'грузовой'
   end
 
-  def wagons_add(wagon) 
+  def wagons_add(wagon)
     @wagons << wagon if wagon.class.to_s == 'CargoWagon'
   end
 end

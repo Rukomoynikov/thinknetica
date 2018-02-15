@@ -20,11 +20,11 @@ class Route
     @stations.delete(station)
   end
 
-  private 
+  private
 
   def validate!
-    raise 'Пустое название' if self.name.nil? or self.name.length.zero?
-    raise 'Объект не является Станцией' if stations[0].class != Station or stations[1].class != Station
+    raise 'Пустое название' if name.nil? || name.length.zero?
+    raise 'Объект не является Станцией' if (stations[0].class != Station) || (stations[1].class != Station)
     raise 'Конечная и начальная станции не могут быть одинаковыми' if stations[0] == stations[1]
   end
 end
