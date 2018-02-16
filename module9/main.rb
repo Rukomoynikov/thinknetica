@@ -6,6 +6,7 @@ require_relative('./trains/passenger.rb')
 require_relative('./wagons/wagon.rb')
 require_relative('./wagons/cargo.rb')
 require_relative('./wagons/passenger.rb')
+require_relative('./text_messages')
 require_relative('./management')
 
 # management = Management.new

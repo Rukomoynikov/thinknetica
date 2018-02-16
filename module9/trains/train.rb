@@ -46,7 +46,7 @@ class Train
   end
 
   def wagons_remove
-    @wagons.pop if (@wagons > 0) && (@speed == 0)
+    @wagons.pop if (@wagons > 0) && @speed.zero?
   end
 
   def route=(route)
@@ -57,7 +57,7 @@ class Train
   end
 
   def move_back
-    return if @current_station_index == 0
+    return if @current_station_index.zero?
     current_station.send_train(self)
     @current_station_index -= 1
 
@@ -82,7 +82,7 @@ class Train
   end
 
   def previous_station
-    return if @current_station_index == 0
+    return if @current_station_index.zero?
     @route.stations[@current_station_index - 1]
   end
 

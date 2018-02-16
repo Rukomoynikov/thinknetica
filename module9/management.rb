@@ -10,9 +10,17 @@ class Management
   end
 
   def run
-    main_menu if (choice == 0) || choice.nil?
+    main_menu if choice.nil? || choice.zero?
     choice = gets.chomp.to_i
 
+    select_section(choice)
+  end
+
+  private
+
+  attr_accessor :choice
+
+  def select_section(choice)
     case choice
     when 1 then create_station
     when 2 then create_train
@@ -20,16 +28,10 @@ class Management
     when 4 then set_route_to_train
     when 5, 6 then wagons_control
     when 7 then move_train
-    when 8 then
-      stations
-    when 9
-      wagons_management
+    when 8 then stations
+    when 9 then wagons_management
     end
   end
-
-  private
-
-  attr_accessor :choice
 
   def move_train
     train = select_train
@@ -48,10 +50,6 @@ class Management
   end
 
   def wagons_management
-    p '1. Добавить вагон'
-    p '2. Список вагонов'
-    choice = gets.chomp.to_i
-
     p 'Тип вагона?'
     p '1. Пассажирский'
     p '1. Грузовой'
@@ -95,17 +93,11 @@ class Management
     train_number = gets.chomp
 
     train = train_by_number(train_number)
-    p "Вы выбрали поезд #{train.number}"
+    TextMessages.wagons_control(train_number)
 
-    p '1. Добавить вагон'
-    p '2. Удалить вагон'
     choice = gets.chomp.to_i
 
-    if choice == 1
-      wagon_add(train)
-    else
-      wagon_remove(train)
-    end
+    choice == 1 ? wagon_add(train) : wagon_remove(train)
 
     run
   end
@@ -137,18 +129,15 @@ class Management
 
   def create_route_starting
     if @stations.length < 2
-      p 'У вас недостаточно созданных станций для основных функций управления маршрутами'
+      p 'У вас недостаточно созданных станций
+        для основных функций управления маршрутами'
 
       run
     end
 
-    p 'Управление маршрутами'
-    p '1. Создать'
-    p '2. Список'
-    p '0. Вернуться в основное меню'
+    TextMessages.create_route_starting
 
     choice = gets.chomp
-    create_route if choice.length.zero?
 
     case choice
     when '1'
@@ -185,7 +174,10 @@ class Management
     p '1. Грузовой'
     p '2. Пассажирский'
     train_type = gets.chomp.to_i
-    raise 'Ошибка выбора типа поезда' if !TRAIN_TYPES.keys.include?(train_type) || train_type.zero?
+
+    if !TRAIN_TYPES.keys.include?(train_type) || train_type.zero?
+      raise 'Ошибка выбора типа поезда'
+    end
 
     p 'Введите номер поезда'
 
@@ -217,20 +209,7 @@ class Management
   end
 
   def main_menu
-    p ' '
-    p '1. Создать станцию'
-    p '2. Создать поезд'
-    p '3. Создавать маршруты и управлять станциями в нем (добавлять, удалять)'
-    p '4. Назначать маршрут поезду'
-    p '5. Добавлять вагоны к поезду'
-    p '6. Отцеплять вагоны от поезда'
-    p '7. Перемещать поезд по маршруту вперед и назад'
-    p '8. Просматривать список станций и список поездов на станции'
-    p '0. Закрыть'
-  end
-
-  def reset_choice
-    choice = 0
+    TextMessages.main_menu
   end
 
   def trains_by_station(station)

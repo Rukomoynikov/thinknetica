@@ -8,13 +8,11 @@ class CargoWagon < Wagon
   def reserve_space(space)
     self.reserved_cargo_space ||= 0
 
-    if self.reserved_cargo_space + space <= cargo_space
-      self.reserved_cargo_space = space
-    end
+    self.reserved_cargo_space = space if fit?(space)
   end
 
   def reserve_space_all
-    reserved_cargo_space = cargo_space
+    self.reserved_cargo_space = cargo_space
   end
 
   def available_space
@@ -30,4 +28,8 @@ class CargoWagon < Wagon
   private
 
   attr_writer :cargo_space, :reserved_cargo_space
+
+  def fit?(space)
+    self.reserved_cargo_space + space <= cargo_space
+  end
 end
