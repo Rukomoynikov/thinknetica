@@ -1,7 +1,6 @@
 require_relative '../shared/manufacturer'
 require_relative '../shared/instance_counter'
 require_relative '../shared/validator'
-require 'byebug'
 
 class Train
   NUMBER_FORMAT = /^[\w|\d]{3}-?[a-z,а-я]{2}$/

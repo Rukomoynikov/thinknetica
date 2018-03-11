@@ -1,3 +1,5 @@
+require_relative('./shared/validator')
+require_relative('./shared/acessors')
 require_relative('./route.rb')
 require_relative('./station.rb')
 require_relative('./trains/train.rb')
@@ -27,7 +29,7 @@ passenger_train.route = route
 cargo_train.route = route
 
 # Создание вагонов
-passenger_wagon = PassengerWagon. new(43)
+passenger_wagon = PassengerWagon.new(43)
 passenger_wagon.reserve_place
 passenger_wagon.reserve_all_place
 

@@ -1,12 +1,18 @@
 require_relative './shared/validator'
-require 'pry'
+require_relative './shared/acessors'
+require_relative('./wagons/wagon.rb')
+require_relative('./wagons/cargo.rb')
+require_relative('./wagons/passenger.rb')
 
 class Station
   include Validator
+  extend Acessors
 
   @@instances = []
 
-  attr_reader :name
+  attr_accessor_with_history :name, :wagon
+
+  validate :name, :presence  
 
   def self.all
     @@instances
@@ -58,9 +64,6 @@ class Station
     end
   end
 
-  private
-
-  def validate!
-    raise 'Пустое название' if name.nil? || name.length.zero?
-  end
 end
+
+st = Station.new('asfsaf')
