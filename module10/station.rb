@@ -65,5 +65,3 @@ class Station
   end
 
 end
-
-st = Station.new('asfsaf')
